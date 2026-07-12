@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../services/api";
 
@@ -14,6 +14,20 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState([]);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+        setShowTooltip(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -41,7 +55,17 @@ export default function Register() {
   return (
     <div className="page-container">
       <div className="form-card">
-        <h1>Create Account</h1>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
+          <h1 style={{ marginBottom: 0 }}>Create Account</h1>
+          <div className="tooltip-container" ref={tooltipRef} onClick={() => setShowTooltip(!showTooltip)}>
+            <span className="tooltip-icon">!</span>
+            {showTooltip && (
+              <div className="tooltip-popover">
+                Ensure the Stage 1 backend server is running (<code>npm run dev</code> in the Stage 1 directory) and keep the terminal active, as registration requires the backend API to be running.
+              </div>
+            )}
+          </div>
+        </div>
         <p className="subtitle">Fill in the details below to register.</p>
 
         {error && (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { loginUser } from "../services/api";
 import { useAuth } from "../context/AuthContext";
@@ -11,6 +11,20 @@ export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+        setShowTooltip(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const successMessage = location.state?.message || "";
 
@@ -37,7 +51,17 @@ export default function Login() {
   return (
     <div className="page-container">
       <div className="form-card">
-        <h1>Welcome Back</h1>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
+          <h1 style={{ marginBottom: 0 }}>Welcome Back</h1>
+          <div className="tooltip-container" ref={tooltipRef} onClick={() => setShowTooltip(!showTooltip)}>
+            <span className="tooltip-icon">!</span>
+            {showTooltip && (
+              <div className="tooltip-popover">
+                Ensure the Stage 1 backend server is running (<code>npm run dev</code> in the Stage 1 directory) and keep the terminal active, as login requires the backend API to be running.
+              </div>
+            )}
+          </div>
+        </div>
         <p className="subtitle">Log in to access your dashboard.</p>
 
         {successMessage && (
