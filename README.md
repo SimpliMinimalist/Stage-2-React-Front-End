@@ -29,17 +29,11 @@ cd Stage-2-React-Front-End
 npm install
 ```
 
-**Step 4:** Copy the environment file and connect to Stage 1:
+**Step 4:** Verify Environment Variables
 
-```bash
-# Windows
-copy .env.example .env
+> **Note:** A pre-configured `.env` file has been directly included in this repository to simplify the setup process. **In a real production environment, you should NEVER commit or push your `.env` file to source control.**
 
-# macOS / Linux
-cp .env.example .env
-```
-
-> No changes are needed. The `.env` file is pre-configured to connect to `http://localhost:3000/api` — which is where the Stage 1 server runs by default.
+No changes are needed. The `.env` file is pre-configured to connect to `http://localhost:3000/api` — which is where the Stage 1 server runs by default.
 
 **Step 5:** Start the development server:
 
