@@ -45,6 +45,11 @@ npm run dev
 
 You should see the Register page. Create an account, log in, and you will be redirected to the dashboard displaying your username.
 
+## Troubleshooting
+
+> **"Failed to fetch" Error:** 
+> If you attempt to log in or register and receive a "Failed to fetch" error in the UI, it means the Stage 1 backend API is either not running or is misconfigured. Ensure that you have a separate terminal window actively running `npm run dev` in the Stage 1 directory and that your MySQL database is properly connected.
+
 ## Technology Stack
 
 - **Framework:** React 19
