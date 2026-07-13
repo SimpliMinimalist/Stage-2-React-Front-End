@@ -1,3 +1,6 @@
+# CONTACT DETAILS
+**DUZOKHO DOZO, 9366595479, duzokhodozo2@gmail.com**
+
 # Stage 2 – React Frontend
 
 This repository contains **Stage 2** of the assessment: a React frontend that connects to the [Stage 1 Backend API](https://github.com/SimpliMinimalist/Stage-1-Backend-API-with-Node.js).
