@@ -4,6 +4,11 @@ This repository contains **Stage 2** of the assessment: a React frontend that co
 
 It provides a working user interface for registration, login, and a protected dashboard — all powered by the Stage 1 API.
 
+| Register | Login | Dashboard |
+|----------|-------|-----------|
+| ![Register Page](assets/register.png) | ![Login Page](assets/login.png) | ![Dashboard](assets/dashboard.png) |
+
+
 ## Important
 
 **Stage 1 must be running before you start Stage 2.**
